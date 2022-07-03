@@ -1,7 +1,7 @@
 package lk.ijse.easy.entity;
 
 import lk.ijse.easy.embeded.Name;
-import lk.ijse.easy.enums.DriverAvailability;
+import lk.ijse.easy.enums.AvailabilityType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +25,5 @@ public class Driver {
     private String driveLicenseNo;
     private String driverAddress;
     private String driverContact;
-    private DriverAvailability driverAvailability;
+    private AvailabilityType driverAvailability;
 }

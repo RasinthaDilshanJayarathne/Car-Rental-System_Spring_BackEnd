@@ -1,5 +1,5 @@
 package lk.ijse.easy.enums;
 
-public enum DriverAvailability {
+public enum AvailabilityType {
     AVAILABLE,NOT_AVAILABLE,
 }
