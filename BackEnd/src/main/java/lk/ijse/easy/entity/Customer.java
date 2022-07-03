@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -16,11 +17,12 @@ import javax.persistence.Id;
 @Data
 public class Customer {
     @Id
-    private String cusId;
-    private String nic;
-    private Name name;
-    private String licenseNo;
-    private String address;
-    private String contactNo;
-    private String email;
+    private String customerId;
+    private String customerNic;
+    @Embedded
+    private Name customerName;
+    private String customerLicenseNo;
+    private String customerAddress;
+    private String customerContactNo;
+    private String customerEmail;
 }
