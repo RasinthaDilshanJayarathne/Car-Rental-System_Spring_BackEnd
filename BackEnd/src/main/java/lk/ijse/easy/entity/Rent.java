@@ -1,5 +1,6 @@
 package lk.ijse.easy.entity;
 
+import lk.ijse.easy.enums.RequestingType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class Rent {
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private LocalDate returnDate;
-    private LocalTime returnTime;
     private double rentalFee;
     private double damageFee;
+    private RequestingType driverRequestingType;
 }
