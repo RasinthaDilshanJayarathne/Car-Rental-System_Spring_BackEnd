@@ -5,11 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Data
 public class RentDetails {
-
-
+    @Id
+    @GeneratedValue
+    private String rentDetailsId;
 }
