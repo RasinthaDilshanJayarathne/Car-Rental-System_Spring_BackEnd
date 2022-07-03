@@ -10,4 +10,6 @@ import lombok.ToString;
 @ToString
 @Data
 public class RentDetails {
+
+
 }
