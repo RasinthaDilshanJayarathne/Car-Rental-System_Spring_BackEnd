@@ -2,6 +2,7 @@ package lk.ijse.easy.entity;
 
 import lk.ijse.easy.embeded.Mileage;
 import lk.ijse.easy.embeded.PriceRate;
+import lk.ijse.easy.enums.AvailabilityType;
 import lk.ijse.easy.enums.FuelType;
 import lk.ijse.easy.enums.TransmissionType;
 import lk.ijse.easy.enums.VehicleType;
@@ -23,7 +24,7 @@ public class Vehicle {
     @Id
     private String vehicleId;
     private String registrationNo;
-    private String brand;
+    private String vehicleBrand;
     private int numberOfPassengers;
     private String color;
     private VehicleType vehicleType;
@@ -33,5 +34,6 @@ public class Vehicle {
     private Mileage mileage;
     @Embedded
     private PriceRate priceRate;
+    private AvailabilityType vehicleAvailabilityType;
 }
 
