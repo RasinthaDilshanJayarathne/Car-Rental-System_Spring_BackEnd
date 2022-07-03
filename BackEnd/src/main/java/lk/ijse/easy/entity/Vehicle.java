@@ -35,5 +35,6 @@ public class Vehicle {
     @Embedded
     private PriceRate priceRate;
     private AvailabilityType vehicleAvailabilityType;
+    private double damageFee;
 }
 

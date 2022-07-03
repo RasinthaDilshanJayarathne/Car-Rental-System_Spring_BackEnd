@@ -1,4 +1,4 @@
 package lk.ijse.easy.entity;
 
-public class Booking {
+public class DriverSchedule {
 }
