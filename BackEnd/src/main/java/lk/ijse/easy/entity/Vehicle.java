@@ -11,9 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,13 +25,17 @@ public class Vehicle {
     private String vehicleBrand;
     private int numberOfPassengers;
     private String color;
+    @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
+    @Enumerated(EnumType.STRING)
     private FuelType fuelType;
+    @Enumerated(EnumType.STRING)
     private TransmissionType transmissionType;
     @Embedded
     private Mileage mileage;
     @Embedded
     private PriceRate priceRate;
+    @Enumerated(EnumType.STRING)
     private AvailabilityType vehicleAvailabilityType;
     private double damageFee;
 }
