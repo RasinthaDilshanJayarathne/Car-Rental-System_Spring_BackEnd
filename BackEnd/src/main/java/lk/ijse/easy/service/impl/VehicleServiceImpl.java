@@ -1,6 +1,5 @@
 package lk.ijse.easy.service.impl;
 
-import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.dto.VehicleDTO;
 import lk.ijse.easy.entity.Vehicle;
 import lk.ijse.easy.exception.DuplicateException;
