@@ -8,14 +8,16 @@ import lombok.ToString;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Data
-@Entity
+//@Entity
 public class Payment {
     @Id
     @GeneratedValue
     private String paymentId;
+    private LocalTime paymentDate;
 }

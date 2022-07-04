@@ -6,10 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +25,14 @@ public class Rent {
     private double rentalFee;
     private double damageFee;
     private RequestingType driverRequestingType;
+
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @JoinColumn(name = "customerID",referencedColumnName = "customerId",nullable = false)
+    private Customer customer;
+
+    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)
+    private List<DriverSchedule> driverSchedules;
+
+    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)
+    private List<RentDetails> rentDetails;
 }
