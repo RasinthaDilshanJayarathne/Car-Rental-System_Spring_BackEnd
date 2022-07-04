@@ -30,6 +30,7 @@ public class DriverServiceImpl implements DriverService {
     public void saveDriver(DriverDTO driverDTO) {
         if (!driverRepo.existsById(driverDTO.getDriveId())) {
             Driver map = modelMapper.map(driverDTO, Driver.class);
+            System.out.println(map.toString());
             driverRepo.save(map);
             System.out.println(driverDTO.getDriveId());
         } else {

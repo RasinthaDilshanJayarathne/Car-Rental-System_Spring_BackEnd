@@ -24,6 +24,7 @@ public class DriverControoler {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveDriver(@RequestBody DriverDTO driver){
+        System.out.println(driver.toString());
         driverService.saveDriver(driver);
         return new ResponseUtil(200,"Saved",null);
 

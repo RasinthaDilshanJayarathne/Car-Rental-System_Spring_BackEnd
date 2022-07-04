@@ -23,5 +23,6 @@ public class Driver {
     private String driveLicenseNo;
     private String driverAddress;
     private String driverContact;
+    @Enumerated(EnumType.STRING)
     private AvailabilityType driverAvailability;
 }
