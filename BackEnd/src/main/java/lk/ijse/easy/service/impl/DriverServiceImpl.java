@@ -1,12 +1,15 @@
 package lk.ijse.easy.service.impl;
 
+import lk.ijse.easy.dto.CustomerDTO;
 import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.exception.DuplicateException;
+import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.DriverRepo;
 import lk.ijse.easy.service.DriverService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +54,10 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<DriverDTO> getAllDrivers() {
-        return null;
+        if (!driverRepo.findAll().isEmpty()){
+            return modelMapper.map(driverRepo.findAll(), new TypeToken<List<DriverDTO>>() {}.getType());
+        }else {
+            throw new NotFoundException("No Drivers in database..!");
+        }
     }
 }
