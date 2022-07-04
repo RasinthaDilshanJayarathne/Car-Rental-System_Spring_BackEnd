@@ -49,10 +49,10 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void updateVehicle(VehicleDTO vehicleDTO) {
         if (vehicleRepo.existsById(vehicleDTO.getVehicleId())){
-            Driver map = modelMapper.map(vehicleDTO, VehicleDTO.class);
+            Vehicle map = modelMapper.map(vehicleDTO, Vehicle.class);
             vehicleRepo.save(map);
         }else {
-            throw new NotFoundException("No Such a Vehicle..!");
+            throw new NotFoundException("No Such a Driver..!");
         }
     }
 
