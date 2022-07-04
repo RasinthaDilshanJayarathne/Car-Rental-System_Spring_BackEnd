@@ -1,10 +1,13 @@
 package lk.ijse.easy.service.impl;
 
+import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.dto.VehicleDTO;
 import lk.ijse.easy.entity.Driver;
+import lk.ijse.easy.entity.Vehicle;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.DriverRepo;
+import lk.ijse.easy.repo.VehicleRepo;
 import lk.ijse.easy.service.VehicleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +21,17 @@ import java.util.List;
 public class VehicleServiceImpl implements VehicleService {
 
     @Autowired
-    DriverRepo driverRepo;
+    VehicleRepo vehicleRepo;
 
     @Autowired
     ModelMapper modelMapper;
 
     @Override
     public void saveVehicle(VehicleDTO vehicleDTO) {
-        if (!driverRepo.existsById(vehicleDTO.getVehicleId())) {
+        if (!vehicleRepo.existsById(vehicleDTO.getVehicleId())) {
             Driver map = modelMapper.map(vehicleDTO, Driver.class);
             System.out.println(map.toString());
-            driverRepo.save(map);
-            System.out.println(vehicleDTO.getVehicleId());
+            vehicleRepo.save(map);
         } else {
             throw new DuplicateException("Vehicle Already Exist..!");
         }
@@ -37,8 +39,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void deleteVehicle(String id) {
-        if (driverRepo.existsById(id)){
-            driverRepo.deleteById(id);
+        if (vehicleRepo.existsById(id)){
+            vehicleRepo.deleteById(id);
         }else{
             throw new NotFoundException("Please check the Vehicle ID.. No Such Vehicle..!");
         }
@@ -46,9 +48,9 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void updateVehicle(VehicleDTO vehicleDTO) {
-        if (driverRepo.existsById(vehicleDTO.getVehicleId())){
-            Driver map = modelMapper.map(vehicleDTO, Driver.class);
-            driverRepo.save(map);
+        if (vehicleRepo.existsById(vehicleDTO.getVehicleId())){
+            Driver map = modelMapper.map(vehicleDTO, VehicleDTO.class);
+            vehicleRepo.save(map);
         }else {
             throw new NotFoundException("No Such a Vehicle..!");
         }
@@ -56,7 +58,12 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDTO searchVehicle(String id) {
-        return null;
+        if (vehicleRepo.existsById(id)){
+            Vehicle vehicle = vehicleRepo.findById(id).get();
+            return modelMapper.map(vehicle, VehicleDTO.class);
+        }else{
+            throw new NotFoundException("No Vehicle For "+ id +" ..!");
+        }
     }
 
     @Override
