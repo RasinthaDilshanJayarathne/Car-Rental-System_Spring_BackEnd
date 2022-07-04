@@ -3,6 +3,7 @@ package lk.ijse.easy.service.impl;
 import lk.ijse.easy.dto.CustomerDTO;
 import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.exception.DuplicateException;
+import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.CustomerRepo;
 import lk.ijse.easy.service.CustomerService;
 import org.modelmapper.ModelMapper;
@@ -39,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerRepo.existsById(id)){
             customerRepo.deleteById(id);
         }else{
-            throw new RuntimeException("Please check the Customer ID.. No Such Customer..!");
+            throw new NotFoundException("Please check the Customer ID.. No Such Customer..!");
         }
     }
 
@@ -49,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
             Customer map = modelMapper.map(customerDTO, Customer.class);
             customerRepo.save(map);
         }else {
-            throw new RuntimeException("No Such a Customer..!");
+            throw new NotFoundException("No Such a Customer..!");
         }
     }
 
@@ -59,13 +60,16 @@ public class CustomerServiceImpl implements CustomerService {
             Customer customer = customerRepo.findById(id).get();
             return modelMapper.map(customer, CustomerDTO.class);
         }else{
-            throw new RuntimeException("No Customer For "+id+" ..!");
+            throw new NotFoundException("No Customer For "+ id +" ..!");
         }
     }
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
-        return modelMapper.map(customerRepo.findAll(), new TypeToken<List<CustomerDTO>>() {
-        }.getType());
+        if (!customerRepo.findAll().isEmpty()){
+            return modelMapper.map(customerRepo.findAll(), new TypeToken<List<CustomerDTO>>() {}.getType());
+        }else {
+            throw new NotFoundException("No Customers in database..!");
+        }
     }
 }
