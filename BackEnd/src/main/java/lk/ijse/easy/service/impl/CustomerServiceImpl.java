@@ -2,6 +2,7 @@ package lk.ijse.easy.service.impl;
 
 import lk.ijse.easy.dto.CustomerDTO;
 import lk.ijse.easy.entity.Customer;
+import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.repo.CustomerRepo;
 import lk.ijse.easy.service.CustomerService;
 import org.modelmapper.ModelMapper;
@@ -29,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerRepo.save(map);
             System.out.println(customerDTO.getCustomerId());
         } else {
-            throw new RuntimeException("Customer Already Exist..!");
+            throw new DuplicateException("Customer Already Exist..!");
         }
     }
 
