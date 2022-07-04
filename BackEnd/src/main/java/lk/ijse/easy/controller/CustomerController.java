@@ -42,7 +42,7 @@ public class CustomerController {
     }
 
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchCustomer(@PathVariable String id, @PathVariable String customerId) {
+    public ResponseUtil searchCustomer(@PathVariable String id) {
         CustomerDTO customerDTO = customerService.searchCustomer(id);
         return new ResponseUtil(200,"Found",customerDTO);
     }
