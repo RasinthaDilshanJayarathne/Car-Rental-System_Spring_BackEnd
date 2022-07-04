@@ -3,6 +3,7 @@ package lk.ijse.easy.service.impl;
 import lk.ijse.easy.dto.VehicleDTO;
 import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.exception.DuplicateException;
+import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.DriverRepo;
 import lk.ijse.easy.service.VehicleService;
 import org.modelmapper.ModelMapper;
@@ -36,7 +37,11 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void deleteVehicle(String id) {
-
+        if (driverRepo.existsById(id)){
+            driverRepo.deleteById(id);
+        }else{
+            throw new NotFoundException("Please check the Vehicle ID.. No Such Vehicle..!");
+        }
     }
 
     @Override
