@@ -48,7 +48,12 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public void updateDriver(DriverDTO driverDTO) {
-
+        if (driverRepo.existsById(driverDTO.getDriveId())){
+            Driver map = modelMapper.map(driverDTO, Driver.class);
+            driverRepo.save(map);
+        }else {
+            throw new NotFoundException("No Such a Driver..!");
+        }
     }
 
     @Override
