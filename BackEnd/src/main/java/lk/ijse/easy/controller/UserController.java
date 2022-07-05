@@ -29,9 +29,9 @@ public class UserController {
         return new ResponseUtil(200,"Saved",null);
     }
 
-    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteUser(@RequestParam String id) {
-        userService.deleteUser(id);
+    @DeleteMapping(params = {"name"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteUser(@RequestParam String name) {
+        userService.deleteUser(name);
         return new ResponseUtil(200,"Deleted",null);
     }
 
@@ -41,9 +41,9 @@ public class UserController {
         return new ResponseUtil(200,"Updated",null);
     }
 
-    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchUser(@PathVariable String id) {
-        UserDTO userDTO = userService.searchUser(id);
+    @GetMapping(path = "/{name}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchUser(@PathVariable String name) {
+        UserDTO userDTO = userService.searchUser(name);
         return new ResponseUtil(200,"Found",userDTO);
     }
 }
