@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 @NoArgsConstructor
@@ -18,5 +20,6 @@ public class User {
     @Id
     private String userName;
     private String password;
+    @Enumerated(EnumType.STRING)
     private Role role;
 }
