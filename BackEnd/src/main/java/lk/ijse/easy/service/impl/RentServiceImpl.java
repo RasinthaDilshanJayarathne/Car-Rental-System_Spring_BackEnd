@@ -4,6 +4,7 @@ import lk.ijse.easy.dto.RentDTO;
 import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.entity.Rent;
 import lk.ijse.easy.exception.DuplicateException;
+import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.RentRepo;
 import lk.ijse.easy.service.RentService;
 import lombok.ToString;
@@ -36,7 +37,12 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public void deleteRent(String id) {
+        if (rentRepo.existsById(id)){
 
+            rentRepo.deleteById(id);
+        }else{
+            throw new NotFoundException("Please check the Booking ID.. No Such Booking..!");
+        }
     }
 
     @Override
