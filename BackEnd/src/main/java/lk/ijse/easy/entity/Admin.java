@@ -21,7 +21,7 @@ public class Admin {
     private String adminNic;
     @Embedded
     private Name adminName;
-    private String customerLicenseNo;
+    private String adminLicenseNo;
     private String adminEmail;
     private String adminContactNo;
 }
