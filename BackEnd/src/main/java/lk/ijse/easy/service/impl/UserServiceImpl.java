@@ -4,6 +4,7 @@ import lk.ijse.easy.dto.UserDTO;
 import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.entity.User;
 import lk.ijse.easy.exception.DuplicateException;
+import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.UserRepo;
 import lk.ijse.easy.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -36,7 +37,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String id) {
-
+        if (userRepo.existsById(id)){
+            userRepo.deleteById(id);
+        }else{
+            throw new NotFoundException("Please check the User Name.. No Such User..!");
+        }
     }
 
     @Override
