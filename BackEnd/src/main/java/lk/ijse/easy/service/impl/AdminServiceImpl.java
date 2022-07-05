@@ -46,7 +46,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void updateAdmin(AdminDTO adminDTO) {
-
+        if (adminRepo.existsById(adminDTO.getAdminId())){
+            Admin map = modelMapper.map(adminDTO, Admin.class);
+            adminRepo.save(map);
+        }else {
+            throw new NotFoundException("No Such a Admin..!");
+        }
     }
 
     @Override
