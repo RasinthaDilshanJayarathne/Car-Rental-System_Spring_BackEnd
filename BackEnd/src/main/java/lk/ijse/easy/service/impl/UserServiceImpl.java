@@ -46,7 +46,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(UserDTO userDTO) {
-
+        if (userRepo.existsById(userDTO.getUserName())){
+            User map = modelMapper.map(userDTO, User.class);
+            userRepo.save(map);
+        }else {
+            throw new NotFoundException("No Such a User..!");
+        }
     }
 
     @Override
