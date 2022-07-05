@@ -1,5 +1,6 @@
 package lk.ijse.easy.service.impl;
 
+import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.dto.UserDTO;
 import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.entity.User;
@@ -55,8 +56,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO searchUser(String id) {
-        return null;
+    public UserDTO searchUser(String name) {
+        if (userRepo.existsById(name)){
+            User user = userRepo.findById(name).get();
+            return modelMapper.map(user, UserDTO.class);
+        }else{
+            throw new NotFoundException("No User For "+ name +" ..!");
+        }
     }
 
     @Override
