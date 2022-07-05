@@ -9,6 +9,7 @@ import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.UserRepo;
 import lk.ijse.easy.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,9 +38,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String id) {
-        if (userRepo.existsById(id)){
-            userRepo.deleteById(id);
+    public void deleteUser(String name) {
+        if (userRepo.existsById(name)){
+            userRepo.deleteById(name);
         }else{
             throw new NotFoundException("Please check the User Name.. No Such User..!");
         }
@@ -67,6 +68,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return null;
+        if (!userRepo.findAll().isEmpty()){
+            return modelMapper.map(userRepo.findAll(), new TypeToken<List<UserDTO>>() {}.getType());
+        }else {
+            throw new NotFoundException("No Users in database..!");
+        }
     }
 }
