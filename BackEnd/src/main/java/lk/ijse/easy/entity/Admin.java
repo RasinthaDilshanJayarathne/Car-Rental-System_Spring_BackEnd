@@ -6,9 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,4 +22,6 @@ public class Admin {
     private String adminLicenseNo;
     private String adminEmail;
     private String adminContactNo;
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 }

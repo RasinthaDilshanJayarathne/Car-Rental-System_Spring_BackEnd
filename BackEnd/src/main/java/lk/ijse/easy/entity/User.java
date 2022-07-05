@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,6 +15,8 @@ import javax.persistence.Id;
 @Data
 public class User {
     @Id
+    @GeneratedValue
+    private String userId;
     private String userName;
     private String password;
     @Enumerated(EnumType.STRING)

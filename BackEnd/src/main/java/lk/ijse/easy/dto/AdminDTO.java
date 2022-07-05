@@ -1,6 +1,7 @@
 package lk.ijse.easy.dto;
 
 import lk.ijse.easy.embeded.Name;
+import lk.ijse.easy.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,5 @@ public class AdminDTO {
     private String adminLicenseNo;
     private String adminEmail;
     private String adminContactNo;
+    private UserDTO user;
 }

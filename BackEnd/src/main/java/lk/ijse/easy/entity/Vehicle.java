@@ -32,11 +32,13 @@ public class Vehicle {
     @Enumerated(EnumType.STRING)
     private TransmissionType transmissionType;
     @Embedded
-    private Mileage mileage;
+    private Mileage freeMileage;
     @Embedded
     private PriceRate priceRate;
     @Enumerated(EnumType.STRING)
     private AvailabilityType vehicleAvailabilityType;
     private double damageFee;
+    private int lastServiceMileage;
+    private int vehicleServiceMileage;
 }
 

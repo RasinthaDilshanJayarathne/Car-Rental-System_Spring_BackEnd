@@ -24,8 +24,10 @@ public class VehicleDTO {
     private VehicleType vehicleType;
     private FuelType fuelType;
     private TransmissionType transmissionType;
-    private Mileage mileage;
+    private Mileage freeMileage;
     private PriceRate priceRate;
     private AvailabilityType vehicleAvailabilityType;
     private double damageFee;
+    private int lastServiceMileage;
+    private int vehicleServiceMileage;
 }

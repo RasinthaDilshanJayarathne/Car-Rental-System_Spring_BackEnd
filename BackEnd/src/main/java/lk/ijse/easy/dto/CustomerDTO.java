@@ -18,4 +18,5 @@ public class CustomerDTO {
     private String customerAddress;
     private String customerContactNo;
     private String customerEmail;
+    private UserDTO user;
 }

@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
         if (!userRepo.existsById(userDTO.getUserName())) {
             User map = modelMapper.map(userDTO, User.class);
             userRepo.save(map);
-            System.out.println(userDTO.getUserName());
         } else {
             throw new DuplicateException("User Already Exist..!");
         }
