@@ -1,5 +1,6 @@
 package lk.ijse.easy.service.impl;
 
+import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.dto.RentDTO;
 import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.entity.Rent;
@@ -57,7 +58,12 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public RentDTO searchRent(String id) {
-        return null;
+        if (rentRepo.existsById(id)){
+            Rent rent = rentRepo.findById(id).get();
+            return modelMapper.map(rent, RentDTO.class);
+        }else{
+            throw new NotFoundException("No Booking For "+ id +" ..!");
+        }
     }
 
     @Override
