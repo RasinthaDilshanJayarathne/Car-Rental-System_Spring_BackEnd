@@ -9,6 +9,7 @@ import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.AdminRepo;
 import lk.ijse.easy.service.AdminService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,6 +68,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<AdminDTO> getAllAdmins() {
-        return null;
+        if (!adminRepo.findAll().isEmpty()){
+            return modelMapper.map(adminRepo.findAll(), new TypeToken<List<AdminDTO>>() {}.getType());
+        }else {
+            throw new NotFoundException("No Admins in database..!");
+        }
     }
 }
