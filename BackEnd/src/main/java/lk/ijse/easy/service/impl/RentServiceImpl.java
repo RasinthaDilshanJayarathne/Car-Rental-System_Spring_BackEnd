@@ -47,7 +47,12 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public void updateRent(RentDTO rentDTO) {
-
+        if (rentRepo.existsById(rentDTO.getRentId())){
+            Rent map = modelMapper.map(rentDTO, Rent.class);
+            rentRepo.save(map);
+        }else {
+            throw new NotFoundException("No Such a Booking..!");
+        }
     }
 
     @Override
