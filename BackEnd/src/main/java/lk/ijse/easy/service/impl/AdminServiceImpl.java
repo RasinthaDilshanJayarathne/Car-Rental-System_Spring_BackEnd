@@ -1,6 +1,7 @@
 package lk.ijse.easy.service.impl;
 
 import lk.ijse.easy.dto.AdminDTO;
+import lk.ijse.easy.dto.CustomerDTO;
 import lk.ijse.easy.entity.Admin;
 import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.exception.DuplicateException;
@@ -56,7 +57,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public AdminDTO searchAdmin(String id) {
-        return null;
+        if (adminRepo.existsById(id)){
+            Admin admin = adminRepo.findById(id).get();
+            return modelMapper.map(admin, AdminDTO.class);
+        }else{
+            throw new NotFoundException("No Admin For "+ id +" ..!");
+        }
     }
 
     @Override
