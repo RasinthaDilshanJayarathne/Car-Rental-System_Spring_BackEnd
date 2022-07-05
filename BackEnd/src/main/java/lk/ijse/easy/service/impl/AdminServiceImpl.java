@@ -4,6 +4,7 @@ import lk.ijse.easy.dto.AdminDTO;
 import lk.ijse.easy.entity.Admin;
 import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.exception.DuplicateException;
+import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.AdminRepo;
 import lk.ijse.easy.service.AdminService;
 import org.modelmapper.ModelMapper;
@@ -36,7 +37,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void deleteAdmin(String id) {
-
+        if (adminRepo.existsById(id)){
+            adminRepo.deleteById(id);
+        }else{
+            throw new NotFoundException("Please check the Admin ID.. No Such Admin..!");
+        }
     }
 
     @Override
