@@ -8,6 +8,7 @@ import lk.ijse.easy.entity.Rent;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.PaymentRepo;
+import lk.ijse.easy.repo.RentRepo;
 import lk.ijse.easy.service.PaymentService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -25,13 +26,21 @@ public class PaymentServiceImpl implements PaymentService {
     PaymentRepo paymentRepo;
 
     @Autowired
+    RentRepo rentRepo;
+
+    @Autowired
     ModelMapper modelMapper;
 
     @Override
     public void savePayment(PaymentDTO paymentDTO) {
         if (!paymentRepo.existsById(paymentDTO.getPaymentId())) {
-            Payment map = modelMapper.map(paymentDTO, Payment.class);
-            paymentRepo.save(map);
+            if(!rentRepo.existsById(paymentDTO.getRent().getRentId())){
+                Payment map = modelMapper.map(paymentDTO, Payment.class);
+                paymentRepo.save(map);
+            }else {
+                throw new DuplicateException("Booking Already Exist..!");
+            }
+
         } else {
             throw new DuplicateException("Payment Already Exist..!");
         }
