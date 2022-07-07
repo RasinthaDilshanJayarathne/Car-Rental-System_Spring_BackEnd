@@ -34,13 +34,12 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public void savePayment(PaymentDTO paymentDTO) {
         if (!paymentRepo.existsById(paymentDTO.getPaymentId())) {
-            if(!rentRepo.existsById(paymentDTO.getRent().getRentId())){
+            if(rentRepo.existsById(paymentDTO.getRent().getRentId())){
                 Payment map = modelMapper.map(paymentDTO, Payment.class);
                 paymentRepo.save(map);
             }else {
                 throw new DuplicateException("Booking Already Exist..!");
             }
-
         } else {
             throw new DuplicateException("Payment Already Exist..!");
         }
