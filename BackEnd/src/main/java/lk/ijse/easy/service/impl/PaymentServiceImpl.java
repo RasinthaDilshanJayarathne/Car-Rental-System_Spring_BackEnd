@@ -1,5 +1,6 @@
 package lk.ijse.easy.service.impl;
 
+import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.dto.PaymentDTO;
 import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.entity.Payment;
@@ -56,7 +57,12 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentDTO searchPayment(String id) {
-        return null;
+        if (paymentRepo.existsById(id)){
+            Payment payment = paymentRepo.findById(id).get();
+            return modelMapper.map(payment, PaymentDTO.class);
+        }else{
+            throw new NotFoundException("No Payment For "+ id +" ..!");
+        }
     }
 
     @Override
