@@ -4,6 +4,7 @@ import lk.ijse.easy.dto.PaymentDTO;
 import lk.ijse.easy.entity.Payment;
 import lk.ijse.easy.entity.Rent;
 import lk.ijse.easy.exception.DuplicateException;
+import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.PaymentRepo;
 import lk.ijse.easy.service.PaymentService;
 import org.modelmapper.ModelMapper;
@@ -29,13 +30,17 @@ public class PaymentServiceImpl implements PaymentService {
             Payment map = modelMapper.map(paymentDTO, Payment.class);
             paymentRepo.save(map);
         } else {
-            throw new DuplicateException("Booking Already Exist..!");
+            throw new DuplicateException("Payment Already Exist..!");
         }
     }
 
     @Override
     public void deletePayment(String id) {
-
+        if (paymentRepo.existsById(id)){
+            paymentRepo.deleteById(id);
+        }else{
+            throw new NotFoundException("Please check the Payment ID.. No Such Payment..!");
+        }
     }
 
     @Override
