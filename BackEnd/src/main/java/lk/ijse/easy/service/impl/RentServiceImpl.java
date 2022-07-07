@@ -29,7 +29,6 @@ public class RentServiceImpl implements RentService {
         if (!rentRepo.existsById(rentDTO.getRentId())) {
             Rent map = modelMapper.map(rentDTO, Rent.class);
             rentRepo.save(map);
-            System.out.println(rentDTO.getRentId());
         } else {
             throw new DuplicateException("Booking Already Exist..!");
         }

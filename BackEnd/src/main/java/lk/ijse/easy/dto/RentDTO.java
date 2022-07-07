@@ -1,7 +1,6 @@
 package lk.ijse.easy.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lk.ijse.easy.entity.RentDetails;
 import lk.ijse.easy.enums.RequestingType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
