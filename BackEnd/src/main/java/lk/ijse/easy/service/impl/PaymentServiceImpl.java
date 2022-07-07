@@ -10,6 +10,7 @@ import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.PaymentRepo;
 import lk.ijse.easy.service.PaymentService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,6 +68,10 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public List<PaymentDTO> getAllPayments() {
-        return null;
+        if (!paymentRepo.findAll().isEmpty()){
+            return modelMapper.map(paymentRepo.findAll(), new TypeToken<List<PaymentDTO>>() {}.getType());
+        }else {
+            throw new NotFoundException("No Payments in database..!");
+        }
     }
 }
