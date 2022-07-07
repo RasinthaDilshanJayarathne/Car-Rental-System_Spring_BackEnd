@@ -1,6 +1,7 @@
 package lk.ijse.easy.service.impl;
 
 import lk.ijse.easy.dto.PaymentDTO;
+import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.entity.Payment;
 import lk.ijse.easy.entity.Rent;
 import lk.ijse.easy.exception.DuplicateException;
@@ -45,7 +46,12 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void updatePayment(PaymentDTO paymentDTO) {
-
+        if (paymentRepo.existsById(paymentDTO.getPaymentId())){
+            Payment map = modelMapper.map(paymentDTO, Payment.class);
+            paymentRepo.save(map);
+        }else {
+            throw new NotFoundException("No Such a Payment..!");
+        }
     }
 
     @Override
