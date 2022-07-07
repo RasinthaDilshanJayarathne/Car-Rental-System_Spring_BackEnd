@@ -1,8 +1,6 @@
 package lk.ijse.easy.service.impl;
 
-import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.dto.RentDTO;
-import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.entity.Rent;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;

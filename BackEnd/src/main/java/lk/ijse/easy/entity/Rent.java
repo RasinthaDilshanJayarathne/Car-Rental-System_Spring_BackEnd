@@ -1,5 +1,6 @@
 package lk.ijse.easy.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lk.ijse.easy.enums.RequestingType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +23,7 @@ public class Rent {
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private LocalDate returnDate;
-    private double rentalFee;
-    private double damageFee;
+    @Enumerated(EnumType.STRING)
     private RequestingType driverRequestingType;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})

@@ -15,10 +15,16 @@ import javax.persistence.*;
 @Data
 public class User {
     @Id
-    @GeneratedValue
-    private String userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
     private String userName;
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public User(String userName, String password, Role role) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+    }
 }

@@ -7,6 +7,7 @@ import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.AdminRepo;
+import lk.ijse.easy.repo.UserRepo;
 import lk.ijse.easy.service.AdminService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -24,14 +25,21 @@ public class AdminServiceImpl implements AdminService {
     AdminRepo adminRepo;
 
     @Autowired
+    UserRepo userRepo;
+
+    @Autowired
     ModelMapper modelMapper;
 
     @Override
     public void saveAdmin(AdminDTO adminDTO) {
         if (!adminRepo.existsById(adminDTO.getAdminId())) {
-            Admin map = modelMapper.map(adminDTO, Admin.class);
-            adminRepo.save(map);
-            System.out.println(adminDTO.getAdminId());
+            if (!userRepo.existsByUserName(adminDTO.getUser().getUserName())){
+                Admin map = modelMapper.map(adminDTO, Admin.class);
+                adminRepo.save(map);
+            }else {
+                throw new DuplicateException("User Already Exist..!");
+            }
+
         } else {
             throw new DuplicateException("Admin Already Exist..!");
         }

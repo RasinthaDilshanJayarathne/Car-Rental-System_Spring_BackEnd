@@ -1,12 +1,12 @@
 package lk.ijse.easy.service.impl;
 
-import lk.ijse.easy.dto.CustomerDTO;
 import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.entity.Driver;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.DriverRepo;
+import lk.ijse.easy.repo.UserRepo;
 import lk.ijse.easy.service.DriverService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -24,15 +24,21 @@ public class DriverServiceImpl implements DriverService {
     DriverRepo driverRepo;
 
     @Autowired
+    UserRepo userRepo;
+
+    @Autowired
     ModelMapper modelMapper;
 
     @Override
     public void saveDriver(DriverDTO driverDTO) {
         if (!driverRepo.existsById(driverDTO.getDriveId())) {
-            Driver map = modelMapper.map(driverDTO, Driver.class);
-            System.out.println(map.toString());
-            driverRepo.save(map);
-            System.out.println(driverDTO.getDriveId());
+            if (!userRepo.existsByUserName(driverDTO.getUser().getUserName())){
+                Driver map = modelMapper.map(driverDTO, Driver.class);
+                driverRepo.save(map);
+            }else {
+                throw new DuplicateException("User Already Exist..!");
+            }
+
         } else {
             throw new DuplicateException("Driver Already Exist..!");
         }

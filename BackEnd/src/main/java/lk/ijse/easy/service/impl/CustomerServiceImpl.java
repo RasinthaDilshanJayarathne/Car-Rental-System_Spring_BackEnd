@@ -1,10 +1,12 @@
 package lk.ijse.easy.service.impl;
 
 import lk.ijse.easy.dto.CustomerDTO;
+import lk.ijse.easy.entity.Admin;
 import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.CustomerRepo;
+import lk.ijse.easy.repo.UserRepo;
 import lk.ijse.easy.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -22,14 +24,21 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepo customerRepo;
 
     @Autowired
+    UserRepo userRepo;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public void saveCustomer(CustomerDTO customerDTO) {
         if (!customerRepo.existsById(customerDTO.getCustomerId())) {
-            Customer map = modelMapper.map(customerDTO, Customer.class);
-            customerRepo.save(map);
-            System.out.println(customerDTO.getCustomerId());
+            if (!userRepo.existsByUserName(customerDTO.getUser().getUserName())){
+                Customer map = modelMapper.map(customerDTO, Customer.class);
+                customerRepo.save(map);
+            }else {
+                throw new DuplicateException("User Already Exist..!");
+            }
+
         } else {
             throw new DuplicateException("Customer Already Exist..!");
         }

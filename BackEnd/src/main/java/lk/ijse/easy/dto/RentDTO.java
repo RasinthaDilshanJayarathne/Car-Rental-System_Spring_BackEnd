@@ -1,5 +1,6 @@
 package lk.ijse.easy.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lk.ijse.easy.entity.RentDetails;
 import lk.ijse.easy.enums.RequestingType;
 import lombok.AllArgsConstructor;
@@ -17,13 +18,16 @@ import java.util.List;
 @Data
 public class RentDTO {
     private String rentId;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate pickUpDate;
+    @JsonFormat(pattern="HH:mm:ss")
     private LocalTime pickUpTime;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate returnDate;
-    private double rentalFee;
-    private double damageFee;
     private RequestingType driverRequestingType;
     private CustomerDTO customer;
     private List<DriverScheduleDTO> driverSchedules;
     private List<RentDetailsDTO> rentDetails;
+
+
 }

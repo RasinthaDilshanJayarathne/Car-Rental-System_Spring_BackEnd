@@ -1,5 +1,6 @@
 package lk.ijse.easy.entity;
 
+import lk.ijse.easy.enums.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,8 @@ public class Payment {
     private String paymentId;
     private LocalTime paymentDate;
     private double amount;
-    private String  paymentType;
+    @Enumerated(EnumType.STRING)
+    private PaymentType paymentType;
 
     @ManyToOne
     @JoinColumn(name = "rentId",referencedColumnName = "rentId",insertable = false,updatable = false)
