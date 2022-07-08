@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -18,12 +20,6 @@ public class PaymentDTO {
     private LocalDate paymentDate;
     private double amount;
     private String  paymentType;
+    @OneToMany(cascade = CascadeType.ALL)
     private RentDTO rent;
-
-    public PaymentDTO(LocalDate paymentDate, double amount, String paymentType, RentDTO rent) {
-        this.paymentDate = paymentDate;
-        this.amount = amount;
-        this.paymentType = paymentType;
-        this.rent = rent;
-    }
 }

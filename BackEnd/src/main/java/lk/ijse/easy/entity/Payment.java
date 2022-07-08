@@ -24,13 +24,7 @@ public class Payment {
     private PaymentType paymentType;
 
     @ManyToOne
-    @JoinColumn(name = "rentId",referencedColumnName = "rentId",insertable = false,updatable = false)
+    @JoinColumn(name = "rentId",referencedColumnName = "rentId",nullable = false)
     private Rent rent;
 
-    public Payment(LocalDate paymentDate, double amount, PaymentType paymentType, Rent rent) {
-        this.paymentDate = paymentDate;
-        this.amount = amount;
-        this.paymentType = paymentType;
-        this.rent = rent;
-    }
 }

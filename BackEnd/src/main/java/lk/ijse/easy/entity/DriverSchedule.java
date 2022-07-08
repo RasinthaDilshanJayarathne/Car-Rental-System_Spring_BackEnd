@@ -24,7 +24,7 @@ public class DriverSchedule {
     @JoinColumn(name = "driveId",referencedColumnName = "driveId",insertable = false,updatable = false)
     private Driver driver;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rentId",referencedColumnName = "rentId",insertable = false,updatable = false)
     private Rent rent;
 }

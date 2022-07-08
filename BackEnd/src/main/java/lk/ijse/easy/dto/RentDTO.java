@@ -28,5 +28,4 @@ public class RentDTO {
     private List<DriverScheduleDTO> driverSchedules;
     private List<RentDetailsDTO> rentDetails;
 
-
 }
