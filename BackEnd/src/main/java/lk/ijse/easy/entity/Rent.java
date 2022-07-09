@@ -1,6 +1,5 @@
 package lk.ijse.easy.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lk.ijse.easy.enums.RequestingType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,9 +29,9 @@ public class Rent {
     @JoinColumn(name = "customerID",referencedColumnName = "customerId",nullable = false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<DriverSchedule> driverSchedules;
 
-    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<RentDetails> rentDetails;
 }

@@ -6,15 +6,15 @@ import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.RentRepo;
 import lk.ijse.easy.service.RentService;
-import lombok.ToString;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@ToString
+@Transactional
 @Service
 public class RentServiceImpl implements RentService {
 
@@ -67,7 +67,7 @@ public class RentServiceImpl implements RentService {
     @Override
     public List<RentDTO> getAllRents() {
         if (!rentRepo.findAll().isEmpty()){
-            return modelMapper.map(rentRepo.findAll(), new TypeToken<List<RentDTO>>() {}.getType());
+            return modelMapper.map(rentRepo.findAll(), new TypeToken<List<RentDTO>>(){}.getType());
         }else {
             throw new NotFoundException("No Booking in database..!");
         }

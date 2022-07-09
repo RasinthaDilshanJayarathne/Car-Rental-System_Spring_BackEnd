@@ -20,7 +20,7 @@ public class RentDetails {
     @Id
     private String rentId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "rentId",referencedColumnName = "rentId",insertable = false,updatable = false)
     private Rent rent;
 

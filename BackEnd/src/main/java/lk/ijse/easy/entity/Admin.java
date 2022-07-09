@@ -22,6 +22,7 @@ public class Admin {
     private String adminLicenseNo;
     private String adminEmail;
     private String adminContactNo;
+
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 }

@@ -46,6 +46,9 @@ public class JPAConfig {
         dataSource.setDriverClassName(environment.getRequiredProperty("my.app.driverclassname"));
         return dataSource;
 
+        //inbuild - tomcat
+        //dbcp
+
 //        return (DataSource) new JndiTemplate().lookup("java:comp/env/jdbc/pool");
     }
 
