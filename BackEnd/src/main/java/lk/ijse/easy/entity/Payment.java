@@ -23,7 +23,7 @@ public class Payment {
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "rentId",referencedColumnName = "rentId",nullable = false)
     private Rent rent;
 

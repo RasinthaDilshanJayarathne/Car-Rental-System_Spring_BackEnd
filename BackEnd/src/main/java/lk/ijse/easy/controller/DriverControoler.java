@@ -18,7 +18,7 @@ public class DriverControoler {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllDrivers(){
-        return new ResponseUtil(200,"Successfully Loaded",driverService.getAllDrivers());
+        return new ResponseUtil(200,"Driver Successfully Loaded",driverService.getAllDrivers());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -26,20 +26,20 @@ public class DriverControoler {
     public ResponseUtil saveDriver(@RequestBody DriverDTO driver){
         System.out.println(driver.toString());
         driverService.saveDriver(driver);
-        return new ResponseUtil(200,"Saved",null);
+        return new ResponseUtil(200,"Driver Successfully Saved",null);
 
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteDriver(@RequestParam String id) {
         driverService.deleteDriver(id);
-        return new ResponseUtil(200,"Deleted",null);
+        return new ResponseUtil(200,"Driver Successfully Deleted",null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateDriver(@RequestBody DriverDTO driver){
         driverService.updateDriver(driver);
-        return new ResponseUtil(200,"Updated",null);
+        return new ResponseUtil(200,"Driver Successfully Updated",null);
     }
 
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)

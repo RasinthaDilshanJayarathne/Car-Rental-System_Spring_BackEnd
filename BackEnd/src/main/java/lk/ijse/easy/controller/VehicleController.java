@@ -18,7 +18,7 @@ public class VehicleController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllVehicles(){
-        return new ResponseUtil(200,"Successfully Loaded",vehicleService.getAllVehicles());
+        return new ResponseUtil(200,"Vehicle Successfully Loaded",vehicleService.getAllVehicles());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -26,20 +26,20 @@ public class VehicleController {
     public ResponseUtil saveVehicle(@RequestBody VehicleDTO vehicle){
         System.out.println(vehicle.toString());
         vehicleService.saveVehicle(vehicle);
-        return new ResponseUtil(200,"Saved",null);
+        return new ResponseUtil(200,"Vehicle Successfully Saved",null);
 
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteVehicle(@RequestParam String id) {
         vehicleService.deleteVehicle(id);
-        return new ResponseUtil(200,"Deleted",null);
+        return new ResponseUtil(200,"Vehicle Successfully Deleted",null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateVehicle(@RequestBody VehicleDTO driver){
         vehicleService.updateVehicle(driver);
-        return new ResponseUtil(200,"Updated",null);
+        return new ResponseUtil(200,"Vehicle Successfully Updated",null);
     }
 
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)

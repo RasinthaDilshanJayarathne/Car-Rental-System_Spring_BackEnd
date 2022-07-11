@@ -20,27 +20,27 @@ public class AdminController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllAdmins(){
-        return new ResponseUtil(200,"Successfully Loaded",adminService.getAllAdmins());
+        return new ResponseUtil(200,"Admin Successfully Loaded",adminService.getAllAdmins());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveAdmin(@RequestBody AdminDTO admin){
         adminService.saveAdmin(admin);
-        return new ResponseUtil(200,"Saved",null);
+        return new ResponseUtil(200,"Admin Successfully Saved",null);
 
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteAdmin(@RequestParam String id) {
         adminService.deleteAdmin(id);
-        return new ResponseUtil(200,"Deleted",null);
+        return new ResponseUtil(200,"Admin Successfully Deleted",null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateAdmin(@RequestBody AdminDTO admin){
         adminService.updateAdmin(admin);
-        return new ResponseUtil(200,"Updated",null);
+        return new ResponseUtil(200,"Admin Successfully Updated",null);
     }
 
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)

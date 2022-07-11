@@ -20,11 +20,11 @@ public class RentDetails {
     @Id
     private String rentId;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "rentId",referencedColumnName = "rentId",insertable = false,updatable = false)
     private Rent rent;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "vehicleId",referencedColumnName = "vehicleId",insertable = false,updatable = false)
     private Vehicle vehicle;
 }

@@ -29,9 +29,9 @@ public class Rent {
     @JoinColumn(name = "customerID",referencedColumnName = "customerId",nullable = false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "rent",cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     private List<DriverSchedule> driverSchedules;
 
-    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "rent",cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     private List<RentDetails> rentDetails;
 }
