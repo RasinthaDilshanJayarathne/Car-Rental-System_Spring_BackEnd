@@ -1,6 +1,5 @@
 package lk.ijse.easy.service;
 
-import lk.ijse.easy.dto.CustomerDTO;
 import lk.ijse.easy.dto.DriverDTO;
 
 import java.util.List;
