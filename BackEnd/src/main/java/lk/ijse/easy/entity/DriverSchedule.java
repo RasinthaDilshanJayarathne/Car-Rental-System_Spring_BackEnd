@@ -20,11 +20,11 @@ public class DriverSchedule {
     @Id
     private String rentId;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @ManyToOne
     @JoinColumn(name = "driveId",referencedColumnName = "driveId",insertable = false,updatable = false)
     private Driver driver;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @ManyToOne
     @JoinColumn(name = "rentId",referencedColumnName = "rentId",insertable = false,updatable = false)
     private Rent rent;
 }

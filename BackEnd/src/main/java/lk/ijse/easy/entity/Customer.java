@@ -23,6 +23,7 @@ public class Customer {
     private String customerAddress;
     private String customerContactNo;
     private String customerEmail;
+
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 }

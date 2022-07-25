@@ -25,6 +25,7 @@ public class Driver {
     private String driverContact;
     @Enumerated(EnumType.STRING)
     private AvailabilityType driverAvailability;
+
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 }
