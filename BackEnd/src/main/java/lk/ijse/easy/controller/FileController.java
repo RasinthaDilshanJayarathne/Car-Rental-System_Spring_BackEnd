@@ -3,6 +3,7 @@ package lk.ijse.easy.controller;
 import lk.ijse.easy.dto.FileDTO;
 import lk.ijse.easy.enums.ReferencedType;
 import lk.ijse.easy.service.FileService;
+import lk.ijse.easy.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
