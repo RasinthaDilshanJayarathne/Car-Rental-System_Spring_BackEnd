@@ -16,13 +16,13 @@ import javax.persistence.*;
 @Data
 public class Driver {
     @Id
-    private String driveId;
-    private String driveNic;
+    private String id;
+    private String nic;
     @Embedded
-    private Name driveName;
-    private String driveLicenseNo;
-    private String driverAddress;
-    private String driverContact;
+    private Name name;
+    private String licenseNo;
+    private String address;
+    private String contactNo;
     @Enumerated(EnumType.STRING)
     private AvailabilityType driverAvailability;
 

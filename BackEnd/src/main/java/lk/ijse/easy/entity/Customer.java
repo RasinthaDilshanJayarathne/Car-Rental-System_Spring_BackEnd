@@ -15,14 +15,14 @@ import javax.persistence.*;
 @Data
 public class Customer {
     @Id
-    private String customerId;
-    private String customerNic;
+    private String id;
+    private String nic;
     @Embedded
-    private Name customerName;
-    private String customerLicenseNo;
-    private String customerAddress;
-    private String customerContactNo;
-    private String customerEmail;
+    private Name name;
+    private String licenseNo;
+    private String address;
+    private String contactNo;
+    private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;

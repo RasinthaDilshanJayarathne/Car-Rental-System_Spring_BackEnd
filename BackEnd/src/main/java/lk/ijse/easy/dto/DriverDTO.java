@@ -13,12 +13,12 @@ import lombok.ToString;
 @Data
 public class DriverDTO {
 
-    private String driveId;
-    private String driveNic;
-    private Name driveName;
-    private String driveLicenseNo;
-    private String driverAddress;
-    private String driverContact;
+    private String id;
+    private String nic;
+    private Name name;
+    private String licenseNo;
+    private String address;
+    private String contactNo;
     private AvailabilityType driverAvailability;
     private UserDTO user;
 }

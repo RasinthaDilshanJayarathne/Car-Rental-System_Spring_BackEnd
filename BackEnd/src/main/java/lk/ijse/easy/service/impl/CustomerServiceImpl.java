@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void saveCustomer(CustomerDTO customerDTO) {
-        if (!customerRepo.existsById(customerDTO.getCustomerId())) {
+        if (!customerRepo.existsById(customerDTO.getId())) {
             if (!userRepo.existsByUserName(customerDTO.getUser().getUserName())){
                 Customer map = modelMapper.map(customerDTO, Customer.class);
                 customerRepo.save(map);
@@ -55,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomer(CustomerDTO customerDTO) {
-        if (customerRepo.existsById(customerDTO.getCustomerId())){
+        if (customerRepo.existsById(customerDTO.getId())){
             Customer map = modelMapper.map(customerDTO, Customer.class);
             customerRepo.save(map);
         }else {

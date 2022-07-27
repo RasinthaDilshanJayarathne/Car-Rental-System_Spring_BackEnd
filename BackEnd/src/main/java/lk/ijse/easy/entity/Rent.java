@@ -26,7 +26,7 @@ public class Rent {
     private RequestingType driverRequestingType;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "customerID",referencedColumnName = "customerId",nullable = false)
+    @JoinColumn(name = "customerID",referencedColumnName = "id",nullable = false)
     private Customer customer;
 
     @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)

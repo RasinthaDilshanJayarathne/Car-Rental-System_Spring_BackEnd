@@ -11,12 +11,12 @@ import lombok.ToString;
 @ToString
 @Data
 public class CustomerDTO {
-    private String customerId;
-    private String customerNic;
-    private Name customerName;
-    private String customerLicenseNo;
-    private String customerAddress;
-    private String customerContactNo;
-    private String customerEmail;
+    private String id;
+    private String nic;
+    private Name name;
+    private String licenseNo;
+    private String address;
+    private String contactNo;
+    private String email;
     private UserDTO user;
 }
