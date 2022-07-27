@@ -15,4 +15,9 @@ public class UserDTO {
     private String userName;
     private String password;
     private Role role;
+
+    public UserDTO(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
 }
