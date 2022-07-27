@@ -57,8 +57,6 @@ public class SearchServiceImpl implements SearchService {
 
         System.out.println("Available"+ availableVehicles.toString());
         System.out.println("Not Available"+ notAvailableVehicles.toString());
-        System.out.println("Not Available Book"+ availableBookingList.toString());
-
         return availableVehicles;
 
 
