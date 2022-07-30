@@ -52,9 +52,9 @@ public class VehicleController {
 
     }
 
-    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteVehicle(@RequestParam String id) {
-        vehicleService.deleteVehicle(id);
+    @DeleteMapping(params = {"vehicleId"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteVehicle(@RequestParam String vehicleId) {
+        vehicleService.deleteVehicle(vehicleId);
         return new ResponseUtil(200,"Vehicle Successfully Deleted",null);
     }
 
@@ -113,12 +113,12 @@ public class VehicleController {
     }
 
     @DeleteMapping(path = "deleteCarImage", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteCarAllImages(@RequestParam String id) throws IOException {
+    public ResponseUtil deleteCarAllImages(@RequestParam String vehicleId) throws IOException {
         String pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\carImage\\";
         String[] carImageView = {"Front", "Back", "Side"};
 
         for (int i = 0; i < carImageView.length; i++) {
-            Files.deleteIfExists(Paths.get(pathDirectory + File.separator + id + carImageView[i] + ".jpeg"));
+            Files.deleteIfExists(Paths.get(pathDirectory + File.separator + vehicleId + carImageView[i] + ".jpeg"));
         }
 
         return new ResponseUtil(200, "car Delete success", null);
