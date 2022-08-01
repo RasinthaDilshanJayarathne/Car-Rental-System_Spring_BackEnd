@@ -81,4 +81,9 @@ public class CustomerServiceImpl implements CustomerService {
             throw new NotFoundException("No Customers in database..!");
         }
     }
+
+    @Override
+    public int countCustomer() {
+        return customerRepo.countCustomer();
+    }
 }

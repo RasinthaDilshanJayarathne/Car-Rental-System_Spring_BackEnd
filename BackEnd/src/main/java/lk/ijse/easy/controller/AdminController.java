@@ -18,6 +18,7 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllAdmins(){
         return new ResponseUtil(200,"Admin Successfully Loaded",adminService.getAllAdmins());
@@ -47,5 +48,10 @@ public class AdminController {
     public ResponseUtil searchAdmin(@PathVariable String id) {
         AdminDTO adminDTO = adminService.searchAdmin(id);
         return new ResponseUtil(200,"Found",adminDTO);
+    }
+
+    @GetMapping(params = {"test"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil generateAdminIds(@RequestParam String test) {
+        return new ResponseUtil(200, "Ok", adminService.generateAdminIds());
     }
 }

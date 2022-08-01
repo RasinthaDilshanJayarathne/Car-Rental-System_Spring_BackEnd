@@ -10,4 +10,5 @@ public interface AdminService {
     void updateAdmin(AdminDTO adminDTO);
     AdminDTO searchAdmin(String id);
     List<AdminDTO>getAllAdmins();
+    String generateAdminIds();
 }

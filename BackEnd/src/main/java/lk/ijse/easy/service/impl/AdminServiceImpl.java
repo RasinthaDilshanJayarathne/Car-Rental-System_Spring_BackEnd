@@ -82,4 +82,23 @@ public class AdminServiceImpl implements AdminService {
             throw new NotFoundException("No Admins in database..!");
         }
     }
+
+    @Override
+    public String generateAdminIds() {
+        String id = adminRepo.generateAdminId();
+        if (id != null) {
+            int tempId = Integer.
+                    parseInt(id.split("-")[1]);
+            tempId = tempId + 1;
+            if (tempId <= 9) {
+                return "A00-00" + tempId;
+            } else if (tempId <= 99) {
+                return "A00-0" + tempId;
+            } else {
+                return "A00-" + tempId;
+            }
+        } else {
+            return "A00-001";
+        }
+    }
 }
