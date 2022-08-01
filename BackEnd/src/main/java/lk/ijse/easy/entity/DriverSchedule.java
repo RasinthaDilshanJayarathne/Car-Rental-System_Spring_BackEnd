@@ -22,12 +22,6 @@ public class DriverSchedule {
     private String driveId;
     @Id
     private String rentId;
-    @Embedded
-    private Name name;
-    private String vehicleBrand;
-    private LocalDate pickUpDate;
-    private LocalDate returnDate;
-    private String location;
 
     @ManyToOne
     @JoinColumn(name = "driveId",referencedColumnName = "id",insertable = false,updatable = false)

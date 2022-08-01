@@ -24,6 +24,7 @@ public class Rent {
     private LocalDate returnDate;
     @Enumerated(EnumType.STRING)
     private RequestingType driverRequestingType;
+    private String location;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "customerID",referencedColumnName = "id",nullable = false)

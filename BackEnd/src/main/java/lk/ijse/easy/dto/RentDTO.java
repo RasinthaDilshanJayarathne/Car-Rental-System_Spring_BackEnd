@@ -24,6 +24,7 @@ public class RentDTO {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate returnDate;
     private RequestingType driverRequestingType;
+    private String location;
     private CustomerDTO customer;
     private List<DriverScheduleDTO> driverSchedules;
     private List<RentDetailsDTO> rentDetails;
