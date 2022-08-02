@@ -87,4 +87,23 @@ public class DriverServiceImpl implements DriverService {
         return driverRepo.countDriver();
     }
 
+    @Override
+    public String generateDriverIds() {
+        String id = driverRepo.generateDriverIds();
+        if (id != null) {
+            int tempId = Integer.
+                    parseInt(id.split("-")[1]);
+            tempId = tempId + 1;
+            if (tempId <= 9) {
+                return "D00-00" + tempId;
+            } else if (tempId <= 99) {
+                return "D00-0" + tempId;
+            } else {
+                return "D00-" + tempId;
+            }
+        } else {
+            return "D00-001";
+        }
+    }
+
 }

@@ -52,4 +52,9 @@ public class DriverControoler {
     public ResponseUtil countCustomers(@PathVariable String count){
         return new ResponseUtil(200, "Ök", driverService.countDriver());
     }
+
+    @GetMapping(params = {"test"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil generateDriverIds(@RequestParam String test) {
+        return new ResponseUtil(200, "Ok", driverService.generateDriverIds());
+    }
 }

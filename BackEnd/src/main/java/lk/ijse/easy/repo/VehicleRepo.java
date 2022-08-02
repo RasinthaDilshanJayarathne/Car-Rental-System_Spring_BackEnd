@@ -7,4 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface VehicleRepo extends JpaRepository<Vehicle,String> {
     @Query(value = "SELECT COUNT(*) FROM vehicle", nativeQuery = true)
     int countVehicle();
+
+    @Query(value = "SELECT vehicleId FROM vehicle ORDER BY vehicleId DESC LIMIT 1", nativeQuery = true)
+    String generateVehicleId();
 }
