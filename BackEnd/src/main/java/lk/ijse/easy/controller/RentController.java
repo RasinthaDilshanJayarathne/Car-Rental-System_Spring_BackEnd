@@ -52,4 +52,9 @@ public class RentController {
     public ResponseUtil countCustomers(@PathVariable String count){
         return new ResponseUtil(200, "Ök", rentService.countRent());
     }
+
+    @GetMapping(params = {"test"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil generateRentIds(@RequestParam String test) {
+        return new ResponseUtil(200, "Ok", rentService.generateRentIds());
+    }
 }

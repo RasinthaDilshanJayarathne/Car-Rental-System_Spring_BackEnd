@@ -11,4 +11,5 @@ public interface RentService {
     RentDTO searchRent(String id);
     List<RentDTO> getAllRents();
     int countRent();
+    String generateRentIds();
 }

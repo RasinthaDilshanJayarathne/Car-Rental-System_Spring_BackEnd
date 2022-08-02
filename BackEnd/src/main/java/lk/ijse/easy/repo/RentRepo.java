@@ -12,4 +12,7 @@ public interface RentRepo extends JpaRepository<Rent,String> {
 
     @Query(value = "SELECT COUNT(*) FROM rent", nativeQuery = true)
     int countRent();
+
+    @Query(value = "SELECT rentId FROM rent ORDER BY rentId DESC LIMIT 1", nativeQuery = true)
+    String generateRentIds();
 }
