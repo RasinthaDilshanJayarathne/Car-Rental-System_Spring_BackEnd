@@ -57,6 +57,11 @@ public class CustomerController {
         return new ResponseUtil(200, "Ök", customerService.countCustomer());
     }
 
+    @GetMapping(params = {"test"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil generateCustomerIds(@RequestParam String test) {
+        return new ResponseUtil(200, "Ok", customerService.generateCustomerIds());
+    }
+
 //    @PostMapping(path = "addPersonalImage", produces = MediaType.APPLICATION_JSON_VALUE)
 //    public ResponseUtil addPersonalImage(@RequestParam(value = "param") MultipartFile[] multipartFile, @RequestParam("id") String id) {
 //        String pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\licenceImage";
