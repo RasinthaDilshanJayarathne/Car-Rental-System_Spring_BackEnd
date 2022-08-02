@@ -2,6 +2,7 @@ package lk.ijse.easy.service.impl;
 
 import lk.ijse.easy.dto.VehicleDTO;
 import lk.ijse.easy.entity.Vehicle;
+import lk.ijse.easy.enums.VehicleType;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.VehicleRepo;
@@ -68,6 +69,15 @@ public class VehicleServiceImpl implements VehicleService {
     public List<VehicleDTO> getAllVehicles() {
         if (!vehicleRepo.findAll().isEmpty()){
             return modelMapper.map(vehicleRepo.findAll(), new TypeToken<List<VehicleDTO>>() {}.getType());
+        }else {
+            throw new NotFoundException("No Vehicles in database..!");
+        }
+    }
+
+    @Override
+    public List<VehicleDTO> getAllGeneralVehicles(VehicleType vehicleType) {
+        if (!vehicleRepo.findByVehicleType(vehicleType).isEmpty()){
+            return modelMapper.map(vehicleRepo.findByVehicleType(vehicleType), new TypeToken<List<VehicleDTO>>() {}.getType());
         }else {
             throw new NotFoundException("No Vehicles in database..!");
         }

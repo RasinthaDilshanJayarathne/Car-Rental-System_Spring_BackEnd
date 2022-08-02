@@ -2,6 +2,7 @@ package lk.ijse.easy.controller;
 
 import lk.ijse.easy.dto.ImageDTO;
 import lk.ijse.easy.dto.VehicleDTO;
+import lk.ijse.easy.enums.VehicleType;
 import lk.ijse.easy.service.VehicleService;
 import lk.ijse.easy.util.FileDownloadUtil;
 import lk.ijse.easy.util.FileSearchUtil;
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @RestController
 @RequestMapping("vehicle")
@@ -49,7 +51,6 @@ public class VehicleController {
         System.out.println(vehicle.toString());
         vehicleService.saveVehicle(vehicle);
         return new ResponseUtil(200,"Vehicle Successfully Saved",null);
-
     }
 
     @DeleteMapping(params = {"vehicleId"},produces = MediaType.APPLICATION_JSON_VALUE)
@@ -78,6 +79,12 @@ public class VehicleController {
     @GetMapping(params = {"test"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil generateVehicleIds(@RequestParam String test) {
         return new ResponseUtil(200, "Ok", vehicleService.generateVehicleIds());
+    }
+
+    @GetMapping(params = {"vehicleType"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllGeneralVehicle(@RequestParam VehicleType vehicleType) {
+        List<VehicleDTO> allGeneralVehicles = vehicleService.getAllGeneralVehicles(vehicleType);
+        return new ResponseUtil(200,"Found",allGeneralVehicles);
     }
 
     @PostMapping(path = "addCarImage", produces = MediaType.APPLICATION_JSON_VALUE)
