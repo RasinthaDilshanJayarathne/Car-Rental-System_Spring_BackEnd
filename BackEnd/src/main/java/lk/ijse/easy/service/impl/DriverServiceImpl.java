@@ -82,4 +82,9 @@ public class DriverServiceImpl implements DriverService {
         }
     }
 
+    @Override
+    public int countDriver() {
+        return driverRepo.countDriver();
+    }
+
 }

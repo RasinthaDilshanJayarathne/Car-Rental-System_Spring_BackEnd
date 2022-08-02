@@ -48,4 +48,8 @@ public class DriverControoler {
         return new ResponseUtil(200,"Found",driverDTO);
     }
 
+    @GetMapping(path ="/COUNT/{count}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil countCustomers(@PathVariable String count){
+        return new ResponseUtil(200, "Ök", driverService.countDriver());
+    }
 }
