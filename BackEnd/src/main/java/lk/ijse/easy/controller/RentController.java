@@ -47,4 +47,9 @@ public class RentController {
         RentDTO rentDTO = rentService.searchRent(id);
         return new ResponseUtil(200,"Found",rentDTO);
     }
+
+    @GetMapping(path ="/COUNT/{count}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil countCustomers(@PathVariable String count){
+        return new ResponseUtil(200, "Ök", rentService.countRent());
+    }
 }

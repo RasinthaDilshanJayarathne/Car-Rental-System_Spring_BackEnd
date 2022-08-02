@@ -72,4 +72,9 @@ public class RentServiceImpl implements RentService {
             throw new NotFoundException("No Booking in database..!");
         }
     }
+
+    @Override
+    public int countRent() {
+        return rentRepo.countRent();
+    }
 }

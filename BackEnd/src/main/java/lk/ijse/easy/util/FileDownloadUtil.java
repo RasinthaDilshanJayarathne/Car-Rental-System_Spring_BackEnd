@@ -46,17 +46,16 @@ public class FileDownloadUtil {
                 searchFile(path, imageName);
                 break;
 
-            case "licence":
-                pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\idCardImage\\";
+            case "licence&nic":
+                pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\personalImage\\";
                 path = Paths.get(pathDirectory + "/" + imageDTO.getImageId() + imageDTO.getImageType() + ".jpeg");
                 break;
 
-            case "idCard":
-                pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\licenceImage\\";
-                path = Paths.get(pathDirectory + "/" + imageDTO.getImageId() + imageDTO.getImageType() + ".jpeg");
-                break;
+//            case "idCard":
+//                pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\licenceImage\\";
+//                path = Paths.get(pathDirectory + "/" + imageDTO.getImageId() + imageDTO.getImageType() + ".jpeg");
+//                break;
         }
-
 
         try {
             if (foundFile != null) {
@@ -65,8 +64,6 @@ public class FileDownloadUtil {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         return null;
-
     }
 }

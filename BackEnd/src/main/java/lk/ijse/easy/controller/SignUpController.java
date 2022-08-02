@@ -36,7 +36,7 @@ public class SignUpController {
 
     @PostMapping(path = "addPersonalImage", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil addPersonalImage(@RequestParam(value = "param") MultipartFile[] multipartFile, @RequestParam("id") String id) {
-        String pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\carImage\\";
+        String pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\personalImage\\";
         String[] personalImageView = {"Nic", "License"};
 
         for (int i = 0; i < multipartFile.length; i++) {

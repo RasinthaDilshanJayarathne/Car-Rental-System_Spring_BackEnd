@@ -10,4 +10,5 @@ public interface RentService {
     void updateRent(RentDTO rentDTO);
     RentDTO searchRent(String id);
     List<RentDTO> getAllRents();
+    int countRent();
 }
