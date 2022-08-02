@@ -70,6 +70,11 @@ public class VehicleController {
         return new ResponseUtil(200,"Found",vehicleDTO);
     }
 
+    @GetMapping(path ="/COUNT/{count}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil countCustomers(@PathVariable String count){
+        return new ResponseUtil(200, "Ök", vehicleService.countVehicle());
+    }
+
     @PostMapping(path = "addCarImage", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil addCarImage(@RequestParam(value = "param") MultipartFile[] multipartFile, @RequestParam("carId") String carId) {
         String pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\carImage\\";

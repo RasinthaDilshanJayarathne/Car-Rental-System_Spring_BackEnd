@@ -72,4 +72,9 @@ public class VehicleServiceImpl implements VehicleService {
             throw new NotFoundException("No Vehicles in database..!");
         }
     }
+
+    @Override
+    public int countVehicle() {
+        return vehicleRepo.countVehicle();
+    }
 }
