@@ -76,9 +76,9 @@ public class VehicleController {
         return new ResponseUtil(200, "Ök", vehicleService.countVehicle());
     }
 
-    @GetMapping(path ="/COUNTGENERAL/{count}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil countGeneralVehicle(@PathVariable String count,@RequestParam String vehicleType){
-        return new ResponseUtil(200, "Ök", vehicleService.countGeneralVehicle(vehicleType));
+    @GetMapping(path ="/COUNTTYPE/{count}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil countVehicleByType(@PathVariable String count,@RequestParam String vehicleType){
+        return new ResponseUtil(200, "Ök", vehicleService.countVehicleByType(vehicleType));
     }
 
     @GetMapping(params = {"test"},produces = MediaType.APPLICATION_JSON_VALUE)
@@ -90,6 +90,11 @@ public class VehicleController {
     public ResponseUtil getAllGeneralVehicle(@RequestParam VehicleType vehicleType) {
         List<VehicleDTO> allGeneralVehicles = vehicleService.getAllGeneralVehicles(vehicleType);
         return new ResponseUtil(200,"Found",allGeneralVehicles);
+    }
+
+    @GetMapping(params = {"brand","type"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllGeneralVehicle(@RequestParam String brand,@RequestParam String type) {
+        return new ResponseUtil(200, "Ok", vehicleService.brandAndTypeCount(brand,type));
     }
 
     @PostMapping(path = "addCarImage", produces = MediaType.APPLICATION_JSON_VALUE)

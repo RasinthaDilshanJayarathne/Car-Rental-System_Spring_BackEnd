@@ -21,5 +21,8 @@ public interface VehicleRepo extends JpaRepository<Vehicle,String> {
     List<Vehicle> findByVehicleType (VehicleType vehicleType);
 
     @Query(value = "SELECT COUNT(*) FROM vehicle WHERE vehicleType=:vehicleType",nativeQuery = true)
-    int countGeneralVehicle(@Param("vehicleType") String vehicleType);
+    int countVehicleByType(@Param("vehicleType") String vehicleType);
+
+    @Query(value = "SELECT COUNT(*) FROM vehicle WHERE vehicleBrand=:brand AND vehicleType=:type",nativeQuery = true)
+    int getCountByVehicleTypeVehicleBrand(@Param("brand") String brand, @Param("type") String type);
 }

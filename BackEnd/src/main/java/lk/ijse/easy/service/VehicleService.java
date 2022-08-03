@@ -13,7 +13,8 @@ public interface VehicleService {
     List<VehicleDTO> getAllVehicles();
     List<VehicleDTO> getAllGeneralVehicles(VehicleType vehicleType);
     int countVehicle();
-    int countGeneralVehicle(String vehicleType);
+    int countVehicleByType(String vehicleType);
+    int brandAndTypeCount(String brand, String type);
     String generateVehicleIds();
 
 }

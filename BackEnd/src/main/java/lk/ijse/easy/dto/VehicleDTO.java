@@ -31,7 +31,6 @@ public class VehicleDTO {
     private int lastServiceMileage;
     private int vehicleServiceMileage;
     private double pricePerExtraKM;
-    private int totalVehicle;
 //    private String imageOne;
 //    private String imageTwo;
 //    private String imageThree;
