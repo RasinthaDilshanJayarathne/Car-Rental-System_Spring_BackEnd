@@ -89,6 +89,11 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    public int countGeneralVehicle(String vehicleType) {
+        return vehicleRepo.countGeneralVehicle(vehicleType);
+    }
+
+    @Override
     public String generateVehicleIds() {
         String id = vehicleRepo.generateVehicleId();
         if (id != null) {

@@ -76,6 +76,11 @@ public class VehicleController {
         return new ResponseUtil(200, "Ök", vehicleService.countVehicle());
     }
 
+    @GetMapping(path ="/COUNTGENERAL/{count}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil countGeneralVehicle(@PathVariable String count,@RequestParam String vehicleType){
+        return new ResponseUtil(200, "Ök", vehicleService.countGeneralVehicle(vehicleType));
+    }
+
     @GetMapping(params = {"test"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil generateVehicleIds(@RequestParam String test) {
         return new ResponseUtil(200, "Ok", vehicleService.generateVehicleIds());
