@@ -8,6 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 @RestController
 @RequestMapping("driver")
 @CrossOrigin
@@ -56,5 +61,17 @@ public class DriverControoler {
     @GetMapping(params = {"test"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil generateDriverIds(@RequestParam String test) {
         return new ResponseUtil(200, "Ok", driverService.generateDriverIds());
+    }
+
+    @DeleteMapping(path = "deleteDriverImage", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteDriverAllImages(@RequestParam String id) throws IOException {
+        String pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\personalImage\\";
+        String[] personalImageView = {"Nic", "License"};
+
+        for (int i = 0; i < personalImageView.length; i++) {
+            Files.deleteIfExists(Paths.get(pathDirectory + File.separator + id + personalImageView[i] + ".jpeg"));
+        }
+
+        return new ResponseUtil(200, "car Delete success", null);
     }
 }

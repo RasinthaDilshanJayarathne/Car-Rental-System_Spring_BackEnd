@@ -2,6 +2,7 @@ package lk.ijse.easy.advisor;
 
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
+import lk.ijse.easy.exception.TableLoadException;
 import lk.ijse.easy.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,11 @@ public class AppWideAdvisor {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ResponseUtil> notFoundException(Exception e) {
         return new ResponseEntity<>(new ResponseUtil(500, "Error",e.getMessage()),HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(TableLoadException.class)
+    public ResponseEntity<ResponseUtil> tableLoadException(Exception e) {
+        return new ResponseEntity<>(new ResponseUtil(200, "Load",e.getMessage()),HttpStatus.OK);
     }
 
 }
