@@ -1,6 +1,7 @@
 package lk.ijse.easy.repo;
 
 import lk.ijse.easy.entity.Customer;
+import lk.ijse.easy.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -10,4 +11,6 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
 
     @Query(value = "SELECT id FROM customer ORDER BY id DESC LIMIT 1", nativeQuery = true)
     String generateCustomerIds();
+
+    Customer findByUser (User user);
 }

@@ -21,11 +21,11 @@ public class SignInServiceImpl implements SignInService {
     ModelMapper modelMapper;
 
     @Override
-    public UserDTO login(UserDTO userDTO) {
-        User user = userRepo.findByUserName(userDTO.getUserName());
+    public UserDTO login(String userName,String password) {
+        User user = userRepo.findByUserName(userName);
 
         if (user!=null){
-            if (user.getPassword().equals(userDTO.getPassword())){
+            if (user.getPassword().equals(password)){
                 return modelMapper.map(user,UserDTO.class);
             }else {
                 throw new RuntimeException("Incorrect Password");

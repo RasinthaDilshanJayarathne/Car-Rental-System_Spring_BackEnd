@@ -67,6 +67,11 @@ public class CustomerController {
         return new ResponseUtil(200, "Ok", customerService.generateCustomerIds());
     }
 
+    @GetMapping(params = {"userName"})
+    public ResponseUtil searchCustomerByUserName(@RequestParam String userName){
+        return new ResponseUtil(200,"OK", customerService.searchCustomerByUserName(userName));
+    }
+
     @DeleteMapping(path = "deleteCustomerImage", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteCustomerAllImages(@RequestParam String id) throws IOException {
         String pathDirectory = "E:\\GDSE58-2nd_Sem\\Spring\\Car-Rental-System_BackEnd\\BackEnd\\src\\main\\resources\\static\\Image\\personalImage\\";

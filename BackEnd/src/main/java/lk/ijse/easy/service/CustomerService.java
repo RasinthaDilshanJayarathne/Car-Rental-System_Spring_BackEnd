@@ -13,4 +13,6 @@ public interface CustomerService {
     List<CustomerDTO> getAllCustomers();
     int countCustomer();
     String generateCustomerIds();
+
+    CustomerDTO searchCustomerByUserName(String userName);
 }

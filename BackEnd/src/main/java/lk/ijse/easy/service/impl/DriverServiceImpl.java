@@ -3,6 +3,7 @@ package lk.ijse.easy.service.impl;
 import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.entity.Driver;
+import lk.ijse.easy.enums.AvailabilityType;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.DriverRepo;
@@ -104,6 +105,13 @@ public class DriverServiceImpl implements DriverService {
         } else {
             return "D00-001";
         }
+    }
+
+    @Override
+    public DriverDTO getAvailableDriver() {
+        Driver availableDriver = driverRepo.findFirstByDriverAvailability(AvailabilityType.AVAILABLE);
+
+        return modelMapper.map(availableDriver,DriverDTO.class);
     }
 
 }

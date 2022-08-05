@@ -14,9 +14,9 @@ public class SignInController {
     @Autowired
     SignInService signInService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil logging(@RequestBody UserDTO userDTO){
-        UserDTO userDto = signInService.login(userDTO);
+    @GetMapping(params = {"userName","password"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil logging(@RequestParam String userName,@RequestParam String password){
+        UserDTO userDto = signInService.login(userName,password);
         return new ResponseUtil(200,"OK",userDto);
     }
 }

@@ -3,6 +3,7 @@ package lk.ijse.easy.service.impl;
 import lk.ijse.easy.dto.CustomerDTO;
 import lk.ijse.easy.entity.Admin;
 import lk.ijse.easy.entity.Customer;
+import lk.ijse.easy.entity.User;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.CustomerRepo;
@@ -103,6 +104,16 @@ public class CustomerServiceImpl implements CustomerService {
             }
         } else {
             return "C00-001";
+        }
+    }
+
+    @Override
+    public CustomerDTO searchCustomerByUserName(String userName) {
+        if (userRepo.existsByUserName(userName)) {
+            User byId = userRepo.findByUserName(userName);
+            return modelMapper.map(customerRepo.findByUser(byId), CustomerDTO.class);
+        }else {
+            throw new NotFoundException("Customer Not Found");
         }
     }
 }

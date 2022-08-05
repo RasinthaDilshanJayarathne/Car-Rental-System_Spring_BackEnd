@@ -10,9 +10,8 @@ import lombok.ToString;
 @ToString
 @Data
 public class DriverScheduleDTO {
-    private VehicleDTO vehicle;
+    private String driverId;
     private String rentId;
     private DriverDTO driver;
     private RentDTO rent;
-    private String location;
 }

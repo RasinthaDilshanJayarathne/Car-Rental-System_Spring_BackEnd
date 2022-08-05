@@ -65,8 +65,8 @@ public class VehicleController {
         return new ResponseUtil(200,"Vehicle Successfully Updated",null);
     }
 
-    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchVehicle(@PathVariable String id) {
+    @GetMapping( params= {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchVehicleById(@RequestParam String id) {
         VehicleDTO vehicleDTO = vehicleService.searchVehicle(id);
         return new ResponseUtil(200,"Found",vehicleDTO);
     }
