@@ -27,7 +27,6 @@ public class RentController {
     public ResponseUtil saveRent(@RequestBody RentDTO rent){
         rentService.saveRent(rent);
         return new ResponseUtil(200,"Booking Successfully Saved",null);
-
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)

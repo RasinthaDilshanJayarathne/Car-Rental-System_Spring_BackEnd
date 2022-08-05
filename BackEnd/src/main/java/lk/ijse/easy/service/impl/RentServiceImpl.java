@@ -2,8 +2,10 @@ package lk.ijse.easy.service.impl;
 
 import lk.ijse.easy.dto.RentDTO;
 import lk.ijse.easy.entity.Rent;
+import lk.ijse.easy.enums.RequestingType;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
+import lk.ijse.easy.repo.CustomerRepo;
 import lk.ijse.easy.repo.RentRepo;
 import lk.ijse.easy.service.RentService;
 import org.modelmapper.ModelMapper;
@@ -24,14 +26,41 @@ public class RentServiceImpl implements RentService {
     @Autowired
     ModelMapper modelMapper;
 
+    @Autowired
+    CustomerRepo customerRepo;
+
     @Override
-    public void saveRent(RentDTO rentDTO) {
-        if (!rentRepo.existsById(rentDTO.getRentId())) {
-            Rent map = modelMapper.map(rentDTO, Rent.class);
-            rentRepo.save(map);
-        } else {
-            throw new DuplicateException("Booking Already Exist..!");
+    public void saveRent(RentDTO dto) {
+        if (!rentRepo.existsById(dto.getRentId())) {
+            if(customerRepo.existsById(dto.getCustomer().getId())){
+                if (!dto.getRentDetails().isEmpty()){
+                    //System.out.println(dto.getNeedDriver());
+                    if (dto.getDriverRequestingType() == RequestingType.YES){
+                        //Driver is needed
+                        if (!dto.getDriverSchedules().isEmpty()) {
+                            System.out.println("Here");
+                            rentRepo.save(modelMapper.map(dto, Rent.class));
+                        }
+                    }else {
+                        //No driver Is needed
+                        rentRepo.save(modelMapper.map(dto, Rent.class));
+                    }
+                }else {
+                    throw new RuntimeException("No vehicles added for the booking..!");
+                }
+            }else {
+                throw new NotFoundException("Customer Not Found..!");
+            }
+        }else {
+            throw new DuplicateException("Booking already exists with this Id");
         }
+        //update the vehicle
+
+            /*for (OrderDetails  : dto.getBookedVehicleList()) {
+                Item item = itemRepo.findById(orderDetail.getItemCode()).get();
+                item.setQtyOnHand(item.getQtyOnHand() - orderDetail.getQty());
+                itemRepo.save(item);
+            }*/
     }
 
     @Override

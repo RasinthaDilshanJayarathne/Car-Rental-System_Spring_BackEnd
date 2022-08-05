@@ -2,6 +2,7 @@ package lk.ijse.easy.service;
 
 import lk.ijse.easy.dto.DriverDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface DriverService {
@@ -12,6 +13,6 @@ public interface DriverService {
     List<DriverDTO> getAllDrivers();
     int countDriver();
     String generateDriverIds();
-
+    DriverDTO loadAvailableDriver(LocalDate pickupDate, LocalDate dropOffDate);
     DriverDTO getAvailableDriver();
 }

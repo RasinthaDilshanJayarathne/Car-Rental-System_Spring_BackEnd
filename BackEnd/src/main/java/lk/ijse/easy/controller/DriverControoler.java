@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("driver")
@@ -63,9 +65,17 @@ public class DriverControoler {
         return new ResponseUtil(200, "Ok", driverService.generateDriverIds());
     }
 
-    @GetMapping( "getAvailableDriver")
-    public ResponseUtil getAvailableDriver(){
-        return new ResponseUtil(200,"OK", driverService.getAvailableDriver());
+//    @GetMapping( "getAvailableDriver")
+//    public ResponseUtil getAvailableDriver(){
+//        return new ResponseUtil(200,"OK", driverService.getAvailableDriver());
+//    }
+
+    @GetMapping( params = {"pickUpDate","returnDate"})
+    public ResponseUtil getAvailableDriver(@RequestParam String pickUpDate,@RequestParam String returnDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate pickUp = LocalDate.parse(pickUpDate,formatter);
+        LocalDate dropOff = LocalDate.parse(returnDate, formatter);
+        return new ResponseUtil(200,"OK", driverService.loadAvailableDriver(pickUp,dropOff));
     }
 
     @DeleteMapping(path = "deleteDriverImage", produces = MediaType.APPLICATION_JSON_VALUE)

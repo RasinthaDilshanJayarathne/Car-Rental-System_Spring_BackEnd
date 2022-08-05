@@ -3,10 +3,13 @@ package lk.ijse.easy.service.impl;
 import lk.ijse.easy.dto.DriverDTO;
 import lk.ijse.easy.entity.Customer;
 import lk.ijse.easy.entity.Driver;
+import lk.ijse.easy.entity.DriverSchedule;
+import lk.ijse.easy.entity.Rent;
 import lk.ijse.easy.enums.AvailabilityType;
 import lk.ijse.easy.exception.DuplicateException;
 import lk.ijse.easy.exception.NotFoundException;
 import lk.ijse.easy.repo.DriverRepo;
+import lk.ijse.easy.repo.RentRepo;
 import lk.ijse.easy.repo.UserRepo;
 import lk.ijse.easy.service.DriverService;
 import org.modelmapper.ModelMapper;
@@ -15,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +31,9 @@ public class DriverServiceImpl implements DriverService {
 
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    RentRepo rentRepo;
 
     @Autowired
     ModelMapper modelMapper;
@@ -105,6 +113,34 @@ public class DriverServiceImpl implements DriverService {
         } else {
             return "D00-001";
         }
+    }
+
+    @Override
+    public DriverDTO loadAvailableDriver(LocalDate pickupDate, LocalDate dropOffDate) {
+        LocalDate pickUpDate = pickupDate.minusDays(1);
+        LocalDate returnDate = dropOffDate.plusDays(1);
+        List<Rent> notAvailableBookingList = rentRepo.findAllByReturnDateIsAfterAndPickUpDateIsBefore(pickUpDate, returnDate);
+        List<Driver> notAvailableDrivers = new ArrayList<>();
+
+        for (Rent rent : notAvailableBookingList) {
+            for (DriverSchedule bookedDriver : rent.getDriverSchedules()) {
+                notAvailableDrivers.add(bookedDriver.getDriver());
+            }
+        }
+
+        L1:
+        for (Driver temp : driverRepo.findAll()) {
+            L2:
+            for (Driver notAvailableDriver : notAvailableDrivers) {
+                if (temp.getId().equals(notAvailableDriver.getId())) {
+                    continue L1;
+                } else {
+                    continue L2;
+                }
+            }
+            return modelMapper.map(temp, DriverDTO.class);
+        }
+        throw new RuntimeException("No Driver Available");
     }
 
     @Override
